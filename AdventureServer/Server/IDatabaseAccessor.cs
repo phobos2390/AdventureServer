@@ -12,6 +12,8 @@ namespace Server
         {
             IRegionAccessor Region { get; }
             ILocationAccessor Location { get; }
+            IEdgeAccessor Edge { get; }
+            IItemAccessor Item { get; }
             void ClearDatabase();
         }
     }

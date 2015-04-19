@@ -10,17 +10,17 @@ namespace Shared
     {
         class InRegionLocation : AbstractLocation
         {
-            private IList<int> adjacencies;
+            private IList<Tuple<int,IEdge>> adjacencies;
             private IList<IItem> items;
             
-            public InRegionLocation(int regionID, int locationId, string name, IList<int> adjacencies, IList<IItem> items)
+            public InRegionLocation(int regionID, int locationId, string name, IList<Tuple<int,IEdge>> adjacencies, IList<IItem> items)
                 :base(regionID,locationId,name)
             {
                 this.adjacencies = adjacencies;
                 this.items = items;
             }
 
-            public IList<int> Adjacencies
+            public IList<Tuple<int,IEdge>> Adjacencies
             {            
                 get 
                 { 

@@ -47,29 +47,6 @@ namespace Server
                 return returnTuple;
             }
 
-            public IList<int> GetAdjacencies(int locationID)
-            {
-                SqlCommand command = this.database.Connection.CreateCommand();
-                command.CommandText = this.getAdjacenciesCommandText;
-                command.Connection = this.database.Connection;
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@LocationID", locationID));
-                this.database.OpenConnection();
-                SqlDataReader reader = command.ExecuteReader();
-                IList<int> returnList = new List<int>();
-                if (reader.Read())
-                {
-                    do
-                    {
-                        int lid = (int)reader["DestinationID"];
-                        returnList.Add(lid);
-                    }
-                    while (reader.Read());
-                }
-                this.database.CloseConnection();
-                return returnList;
-            }
-
             public void AddLocation(Tuple<int, int, string> locationValues)
             {
                 SqlCommand command = this.database.Connection.CreateCommand();
@@ -84,7 +61,31 @@ namespace Server
                 this.database.CloseConnection();
             }
 
-            public void SetAdjacent(Tuple<int, int> adjacencyValues)
+            IList<Tuple<int, int>> ILocationProcedure.GetAdjacencies(int locationID)
+            {
+                SqlCommand command = this.database.Connection.CreateCommand();
+                command.CommandText = this.getAdjacenciesCommandText;
+                command.Connection = this.database.Connection;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@LocationID", locationID));
+                this.database.OpenConnection();
+                SqlDataReader reader = command.ExecuteReader();
+                IList<Tuple<int,int>> returnList = new List<Tuple<int,int>>();
+                if (reader.Read())
+                {
+                    do
+                    {
+                        int lid = (int)reader["DestinationID"];
+                        int edgeId = (int)reader["EdgeID"];
+                        returnList.Add(Tuple.Create<int,int>(lid,edgeId));
+                    }
+                    while (reader.Read());
+                }
+                this.database.CloseConnection();
+                return returnList;
+            }
+
+            public void SetAdjacent(Tuple<int, int, int> adjacencyValues)
             {
                 SqlCommand command = this.database.Connection.CreateCommand();
                 command.CommandText = this.setAdjacentCommandText;
@@ -92,6 +93,7 @@ namespace Server
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Parameters.Add(new SqlParameter("@SourceID", adjacencyValues.Item1));
                 command.Parameters.Add(new SqlParameter("@DestinationID", adjacencyValues.Item2));
+                command.Parameters.Add(new SqlParameter("@EdgeID", adjacencyValues.Item3));
                 this.database.OpenConnection();
                 command.ExecuteNonQuery();
                 this.database.CloseConnection();

@@ -11,6 +11,8 @@ namespace Shared
     {
         public interface IModelBuilderFactory
         {
+            IItemBuilder CreateItemBuilder(string itemType);
+            IEdgeBuilder CreateEdgeBuilder(string edgeType);
             ILocationBuilder CreateLocationBuilder(bool inCurrentRegion);
             IRegionBuilder CreateRegionBuilder();
         }

@@ -30,12 +30,12 @@ namespace Shared
                     }
                 }
 
-                public override ILocationBuilder SetAdjacencies(IList<int> adjacencies)
+                public override ILocationBuilder SetAdjacencies(IList<Tuple<int,IEdge>> adjacencies)
                 {
                     return this;
                 }
 
-                public override ILocationBuilder AddAdjacency(int locationId)
+                public override ILocationBuilder AddAdjacency(int locationId, IEdge edge)
                 {
                     return this;
                 }

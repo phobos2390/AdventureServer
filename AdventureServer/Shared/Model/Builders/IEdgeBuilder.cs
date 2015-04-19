@@ -10,6 +10,7 @@ namespace Shared
     {
         interface IEdgeBuilder
         {
+            IEdgeBuilder SetValues(object tuple);
             IEdge Build();
         }
     }

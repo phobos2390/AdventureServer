@@ -14,8 +14,8 @@ namespace Shared
             int LocationID { get; }
             int RegionID { get; }
             IRegion Region { set; }
-            IList<int> Adjacencies { get; }
-            IList<ILocation> AdjacentLocations { get; }
+            IList<Tuple<int,IEdge>> Adjacencies { get; }
+            IList<Tuple<ILocation,IEdge>> AdjacentLocations { get; }
             IList<IItem> Items { get; }
         }
     }

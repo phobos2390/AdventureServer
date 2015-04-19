@@ -12,7 +12,7 @@ namespace Shared
         {
             class InRegionLocationBuilder : AbstractLocationBuilder
             {
-                private IList<int> adjacencies;
+                private IList<int,IEdge> adjacencies;
                 private IList<IItem> items;
 
                 private bool adjacenciesSet;
@@ -48,16 +48,16 @@ namespace Shared
                     }
                 }
 
-                public override ILocationBuilder SetAdjacencies(IList<int> adjacencies)
+                public override ILocationBuilder SetAdjacencies(IList<Tuple<int,IEdge>> adjacencies)
                 {
                     this.adjacencies = adjacencies;
                     this.adjacenciesSet = true;
                     return this;
                 }
 
-                public override ILocationBuilder AddAdjacency(int locationId)
+                public override ILocationBuilder AddAdjacency(int locationId,IEdge edge)
                 {
-                    this.adjacencies.Add(locationId);
+                    this.adjacencies.Add(Tuple.Create<int,IEdge>(locationId,edge));
                     this.adjacenciesSet = true;
                     return this;
                 }

@@ -17,8 +17,8 @@ namespace Shared
                 ILocationBuilder SetLocationId(int locationId);
                 ILocationBuilder SetRegionId(int regionId);
                 ILocationBuilder SetValues(Tuple<int, int, string> values);
-                ILocationBuilder SetAdjacencies(IList</*Tuple<int,IEdge>*/int> adjacencies);
-                ILocationBuilder AddAdjacency(int locationId);
+                ILocationBuilder SetAdjacencies(IList<Tuple<int,IEdge>> adjacencies);
+                ILocationBuilder AddAdjacency(int locationId,IEdge edgeType);
                 ILocationBuilder SetItems(IList<IItem> items);
                 ILocationBuilder AddItem(IItem item);
             }

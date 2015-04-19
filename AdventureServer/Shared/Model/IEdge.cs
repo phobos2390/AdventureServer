@@ -10,6 +10,7 @@ namespace Shared
     {
         interface IEdge
         {
+            int ID { get; }
             bool CanPass(IPlayer givenPlayer);
         }
     }

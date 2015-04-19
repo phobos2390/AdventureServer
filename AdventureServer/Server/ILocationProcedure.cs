@@ -11,9 +11,9 @@ namespace Server
         public interface ILocationProcedure
         {
             Tuple<int, int, string> GetLocation(int locationID);
-            IList<int> GetAdjacencies(int locationID);
+            IList<Tuple<int,int>> GetAdjacencies(int locationID);
             void AddLocation(Tuple<int, int, string> locationValues);
-            void SetAdjacent(Tuple<int, int> adjacencyValues);
+            void SetAdjacent(Tuple<int,int,int> adjacencyValues);
         }
     }
 }
