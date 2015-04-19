@@ -69,7 +69,6 @@ namespace Server
                 return returnTable;
             }
 
-
             public void AddRegionBasicInfo(Tuple<int, string> basicInfo)
             {
                 SqlCommand command = new SqlCommand();

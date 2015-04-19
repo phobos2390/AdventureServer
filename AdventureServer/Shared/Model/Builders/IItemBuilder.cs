@@ -8,10 +8,10 @@ namespace Shared
 {
     namespace Model
     {
-        class IItemBuilder
+        interface IItemBuilder
         {
             IItemBuilder SetItemID(int itemId);
-            IItemBuilder SetValues(Tuple values);
+            IItemBuilder SetValues(object values);
             IItem Build();
         }
     }

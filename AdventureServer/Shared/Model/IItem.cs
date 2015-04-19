@@ -11,6 +11,8 @@ namespace Shared
         interface IItem
         {
             int ItemID { get; }
+            string GetItemType { get; }
+            bool ItemIsOfType(string type);
         }
     }
 }
